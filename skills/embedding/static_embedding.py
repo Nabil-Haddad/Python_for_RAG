@@ -8,7 +8,7 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 
-
+# This model only use Lowercase words
 
 def load_model(model_name : str):
     try :
@@ -60,7 +60,7 @@ if __name__ == "__main__":
     # words simpler and faster.
 
     kv_norm = kv.get_vector("king", norm=True)
-    get_details(kv_norm)
+    get_details(kv_norm, "king")
 
     
 
@@ -70,3 +70,15 @@ if __name__ == "__main__":
 
     # Number of words
     len(f"This is the length of kv {len(kv)}")
+
+    # display all words (change to true to see)
+    if False:
+        print(kv.index_to_key)
+
+    # calculate the cosign simularity of two words
+    print(kv.similarity("cat", "dog"))
+
+    # See the nearest words
+    print(kv.most_similar("cat", topn=5))
+
+
