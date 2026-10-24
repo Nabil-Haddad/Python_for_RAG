@@ -30,6 +30,15 @@ def get_info():
     for m in models_list:
         print(m)
 
+
+def cosine_simularity(vector_a : np.ndarray, vector_b : np.ndarray):
+    norm_a = np.linalg.norm(vector_a) 
+    norm_b = np.linalg.norm(vector_b)
+    return np.dot(vector_a, vector_b) / (norm_a * norm_b)
+
+def dot_product(vector_a : np.ndarray, vector_b : np.ndarray):
+    return np.dot(vector_a, vector_b)
+
 def get_details(vector , word: str)-> None:
     logging.info(f"Details about\n {word} ")
     # Get the embedding of the word 
@@ -76,9 +85,13 @@ if __name__ == "__main__":
         print(kv.index_to_key)
 
     # calculate the cosign simularity of two words
-    print(kv.similarity("cat", "dog"))
+    print(f"kv cosign simularity {kv.similarity("cat", "dog")}")
 
+    print(f"Np cosign simularity {cosine_simularity(kv["cat"] , kv["dog"])}")
+
+    print(f"Np dot producr {dot_product(kv["cat"] , kv["dog"])}")
+    
     # See the nearest words
-    print(kv.most_similar("cat", topn=5))
+    # print(kv.most_similar("cat", topn=5))
 
 
