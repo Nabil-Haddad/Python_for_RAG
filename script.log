@@ -1,8 +1,0 @@
-2026-10-24 15:13:12,199 - INFO - Importing the model
-2026-10-24 15:13:12,435 - INFO - loading projection weights from /home/nhx/gensim-data/glove-wiki-gigaword-50/glove-wiki-gigaword-50.gz
-2026-10-24 15:13:23,423 - INFO - KeyedVectors lifecycle event {'msg': 'loaded (400000, 50) matrix of type float32 from /home/nhx/gensim-data/glove-wiki-gigaword-50/glove-wiki-gigaword-50.gz', 'binary': False, 'encoding': 'utf8', 'datetime': '2026-10-24T15:13:23.422859', 'gensim': '4.4.0', 'python': '3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 16:09:02) [GCC 11.2.0]', 'platform': 'Linux-6.18.54.1-microsoft-standard-WSL2-x86_64-with-glibc2.39', 'event': 'load_word2vec_format'}
-2026-10-24 15:13:23,423 - INFO - Details about KeyedVectors<vector_size=50, 400000 keys> 
-2026-10-24 15:13:56,680 - INFO - Importing the model
-2026-10-24 15:13:56,845 - INFO - loading projection weights from /home/nhx/gensim-data/glove-wiki-gigaword-50/glove-wiki-gigaword-50.gz
-2026-10-24 15:14:06,450 - INFO - KeyedVectors lifecycle event {'msg': 'loaded (400000, 50) matrix of type float32 from /home/nhx/gensim-data/glove-wiki-gigaword-50/glove-wiki-gigaword-50.gz', 'binary': False, 'encoding': 'utf8', 'datetime': '2026-10-24T15:14:06.449482', 'gensim': '4.4.0', 'python': '3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 16:09:02) [GCC 11.2.0]', 'platform': 'Linux-6.18.54.1-microsoft-standard-WSL2-x86_64-with-glibc2.39', 'event': 'load_word2vec_format'}
-2026-10-24 15:14:06,450 - INFO - Details about KeyedVectors<vector_size=50, 400000 keys> 
