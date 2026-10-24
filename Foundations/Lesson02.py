@@ -130,7 +130,6 @@ class RagAnswer(BaseModel):
 print("\n Part 2: Pydantic v2 validation -----------")
 
 # valid json
-
 valid_json = json.dumps({
     "answer" : "RAG reduces hallucinations by grounding outputs in retrieved documents.",
     "sources" : ["rag_primer.pdf", "langchain_docs.pdf"],

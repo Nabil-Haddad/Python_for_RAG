@@ -66,9 +66,9 @@ print(f"output_dir : {output_dir}")
 example_path = Path("data/raw/fca_handbook_2024.pdf")
 print(f"\nexample path  : {example_path}")
 print(f".name : {example_path.name}")       # fca_handbook_2024.pdf
-print(f".stem  : {example_path.stem}")       # fca_handbook_2024
-print(f".suffix  : {example_path.suffix}")     # .pdf
-print(f".parent  : {example_path.parent}")     # data/raw
+print(f".stem : {example_path.stem}")       # fca_handbook_2024
+print(f".suffix : {example_path.suffix}")     # .pdf
+print(f".parent : {example_path.parent}")     # data/raw
 print(f".exists() : {example_path.exists()}")   # True/False
 
 
@@ -325,8 +325,8 @@ def load_pdf(path: Path) -> list[Document]:
             if not text:
                 continue  # skip blank / image-only pages
             docs.append(Document(
-                content  = text,
-                source   = path.name,
+                content = text,
+                source = path.name,
                 chunk_id = f"{path.stem}_page_{page_num:03d}",
                 page_num = page_num,
                 metadata = {"char_count": len(text)},
