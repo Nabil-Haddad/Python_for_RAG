@@ -148,11 +148,18 @@ if __name__ == "__main__":
 
     print(f"Np dot producr {dot_product(kv["cat"] , kv["dog"])}")
 
-    plot_vectors(kv["dog"], kv["cat"], "dog" , "cat")
-    plot_vectors(kv["king"], kv["queen"], "king" , "queen")
-    plot_vectors(kv["king"], kv["man"], "king" , "man")
+
+    if False :
+        plot_vectors(kv["dog"], kv["cat"], "dog" , "cat")
+        plot_vectors(kv["king"], kv["queen"], "king" , "queen")
+        plot_vectors(kv["king"], kv["man"], "king" , "man")
 
     # See the nearest words
-    # print(kv.most_similar("cat", topn=5))
+    print(kv.most_similar("cat", topn=5))
+
+    # Word arithmetic: king - man + woman
+    result = kv.most_similar(positive=["king", "woman"], negative=["man"], topn=5)
+    print(result)
+
 
 
