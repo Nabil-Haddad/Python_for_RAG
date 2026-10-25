@@ -70,6 +70,57 @@ If the vectors are normalised to unit length (see the `norm=True` option of `get
 | Same as the other if vectors are unit length | Yes | Yes |
 | Typical use | Training score (Word2Vec, GloVe) | Comparing vectors, contrastive training |
 
+### Worked example
+
+Two small 2D vectors, `A = (4, 3)` and `B = (1, 1)`:
+
+- Dot product: `4*1 + 3*1 = 7`
+- Lengths: `|A| = 5`, `|B| = √2 ≈ 1.414`
+- Cosine similarity: `7 / (5 * 1.414) ≈ 0.99`, the two arrows point almost the same way.
+
+Now make B ten times longer, `B = (10, 10)`. The direction is unchanged:
+
+- Dot product: `4*10 + 3*10 = 70` (ten times bigger)
+- Cosine similarity: still `≈ 0.99`
+
+The dot product grows with the length of the vectors, the cosine does not. This is the "length vs direction" difference in one example. The code and the plot are in [vectors_similarity.py](vectors_similarity.py).
+
+### Dimensions
+
+The `50` in `glove-wiki-gigaword-50` is the number of values in each vector. More dimensions (GloVe also has 100, 200 and 300) can capture more nuance, but the model is bigger and comparisons are slower. The vocabulary size (400,000 words) is a separate number: it is the number of vectors in the table.
+
+### Nearest words and word arithmetic
+
+Since similar words are close, we can ask for the nearest neighbours of a word:
+
+```python
+kv.most_similar("cat", topn=5)   # [(word, cosine score), ...]
+```
+
+Directions in the space also carry meaning, so vectors can be added and subtracted:
+
+```python
+# king - man + woman
+kv.most_similar(positive=["king", "woman"], negative=["man"], topn=5)
+```
+
+`most_similar` builds `king - man + woman`, then returns the words with the highest cosine similarity to that result. The input words are excluded from the results. With this model `queen` comes out at or near the top: removing "man" from "king" leaves the idea of royalty, and adding "woman" gives the female version. It does not always work, the results depend on the training corpus.
+
+### How to read the 2D plot
+
+A vector with 50 values cannot be drawn, so `plot_vectors` in [static_embedding.py](static_embedding.py) projects two words onto the 2D plane that contains both of them. The first word lies along the x-axis, and the second word is split into a part along that axis and a part at 90 degrees to it. The lengths and the angle between the arrows are the real ones: the smaller the angle, the higher the cosine similarity.
+
+PCA is not suitable for this. It subtracts the mean first, and with only two points the mean is their midpoint, so the two words always come out as exact opposites, whatever they are.
+
+### Limits of static embeddings
+
+- **One vector per word:** "bank" has the same vector in "river bank" and "bank account". All meanings are mixed in one vector (polysemy).
+- **Out-of-vocabulary words:** a word that is not in the table (a typo, a new word, a rare name) has no vector. The model also only has lowercase words.
+- **No sentence meaning:** a sentence has to be built by combining word vectors yourself, and word order is lost if you average them.
+- **Bias:** the vectors reflect the text they were trained on, including its stereotypes.
+
+These limits are the reason for contextual embeddings.
+
 ---
 
 ## Contextual embeddings
